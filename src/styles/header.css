@@ -27,23 +27,33 @@
 
 /* ---- Logo ---- */
 .header-logo {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  letter-spacing: 3px;
-  color: var(--accent);
   text-decoration: none;
-  border: 3px solid var(--accent);
-  padding: 4px 12px;
-  transform: rotate(-2deg);
-  display: inline-block;
-  line-height: 1;
-  transition: background-color 0.3s, color 0.3s;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  width: 150px;
+  overflow: hidden;
+  transition: transform 0.3s;
 }
 
 .header-logo:hover {
-  background-color: var(--accent);
-  color: var(--bg-primary);
+  transform: scale(1.05);
+}
+
+.header-logo-img {
+  height: 200px;
+  width: auto;
+  object-fit: contain;
+  margin-top: -12px;
+  display: block;
+}
+
+.header-mobile-logo {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
 }
 
 /* ---- Desktop Nav ---- */

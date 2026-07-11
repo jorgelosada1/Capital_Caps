@@ -10,6 +10,7 @@ const actionTypes = {
   LOAD_PRODUCTS: 'LOAD_PRODUCTS',
   TOGGLE_STATUS: 'TOGGLE_STATUS',
   DELETE_PRODUCT: 'DELETE_PRODUCT',
+  SET_STOCK: 'SET_STOCK',
 };
 
 function productReducer(state, action) {
@@ -36,6 +37,23 @@ function productReducer(state, action) {
         ...state,
         products: state.products.filter((p) => p.id !== action.payload),
       };
+    case actionTypes.SET_STOCK: {
+      const { id, stock } = action.payload;
+      const clampedStock = Math.max(0, stock);
+      return {
+        ...state,
+        products: state.products.map((p) =>
+          p.id === id
+            ? {
+                ...p,
+                stock: clampedStock,
+                // Auto-mark as sold when stock reaches 0
+                status: clampedStock === 0 ? PRODUCT_STATUS.SOLD : PRODUCT_STATUS.AVAILABLE,
+              }
+            : p
+        ),
+      };
+    }
     default:
       return state;
   }
@@ -56,15 +74,17 @@ export function ProductProvider({ children }) {
     if (savedState) {
       try {
         const parsed = JSON.parse(savedState);
-        // Merge saved status/deletion info with scanned products
+        // Merge saved status/deletion/stock info with scanned products
         const deletedIds = new Set(parsed.deletedIds || []);
         const statusMap = parsed.statusMap || {};
+        const stockMap = parsed.stockMap || {};
 
         const mergedProducts = scannedProducts
           .filter((p) => !deletedIds.has(p.id))
           .map((p) => ({
             ...p,
             status: statusMap[p.id] || p.status,
+            stock: stockMap[p.id] !== undefined ? stockMap[p.id] : p.stock,
           }));
 
         dispatch({ type: actionTypes.LOAD_PRODUCTS, payload: mergedProducts });
@@ -87,17 +107,21 @@ export function ProductProvider({ children }) {
     // Find which scanned products were deleted by user
     const deletedIds = [...scannedIds].filter((id) => !currentIds.has(id));
 
-    // Build a status map for non-default statuses
+    // Build status and stock maps
     const statusMap = {};
+    const stockMap = {};
     state.products.forEach((p) => {
       if (p.status !== PRODUCT_STATUS.AVAILABLE) {
         statusMap[p.id] = p.status;
+      }
+      if (p.stock !== 1) {
+        stockMap[p.id] = p.stock;
       }
     });
 
     localStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify({ deletedIds, statusMap })
+      JSON.stringify({ deletedIds, statusMap, stockMap })
     );
   }, [state.products, state.loaded]);
 
@@ -109,19 +133,24 @@ export function ProductProvider({ children }) {
     dispatch({ type: actionTypes.DELETE_PRODUCT, payload: id });
   };
 
+  const setStock = (id, stock) => {
+    dispatch({ type: actionTypes.SET_STOCK, payload: { id, stock } });
+  };
+
   const getProduct = (id) => {
     return state.products.find((p) => p.id === id);
   };
 
   const getStats = () => {
     const total = state.products.length;
+    const totalUnits = state.products.reduce((sum, p) => sum + p.stock, 0);
     const available = state.products.filter(
       (p) => p.status === PRODUCT_STATUS.AVAILABLE
     ).length;
     const sold = state.products.filter(
       (p) => p.status === PRODUCT_STATUS.SOLD
     ).length;
-    return { total, available, sold };
+    return { total, totalUnits, available, sold };
   };
 
   return (
@@ -131,6 +160,7 @@ export function ProductProvider({ children }) {
         loaded: state.loaded,
         toggleStatus,
         deleteProduct,
+        setStock,
         getProduct,
         getStats,
       }}

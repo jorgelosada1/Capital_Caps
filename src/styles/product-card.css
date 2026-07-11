@@ -63,27 +63,45 @@
   line-height: 1;
 }
 
-/* ---- Card Button ---- */
+/* ---- Stock Label ---- */
+.product-card-stock {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+}
+
+/* ---- Actions Row ---- */
+.product-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* ---- Card Button (base) ---- */
 .product-card-btn {
-  width: 100%;
+  flex: 1;
   background-color: var(--accent);
   color: var(--bg-primary);
   font-family: var(--font-display);
-  font-size: 1rem;
-  padding: 10px;
+  font-size: 0.85rem;
+  padding: 10px 8px;
   border: none;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
-  margin-top: 12px;
   transition: background-color 0.3s, transform 0.3s;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   text-align: center;
   text-decoration: none;
 }
 
 .product-card-btn:hover {
-  background-color: var(--text-primary);
   transform: translateY(-2px);
 }
 
@@ -91,12 +109,28 @@
   transform: translateY(0);
 }
 
-.product-card-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background-color: var(--border);
-  color: var(--text-secondary);
-  transform: none;
+/* Detail button */
+.product-card-btn--detail {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--border);
+}
+
+.product-card-btn--detail:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Buy / WhatsApp button */
+.product-card-btn--buy {
+  background: #25D366;
+  color: #fff;
+  font-weight: bold;
+}
+
+.product-card-btn--buy:hover {
+  background: #1ebe5d;
+  box-shadow: 3px 3px 0 rgba(37, 211, 102, 0.3);
 }
 
 /* ============================================

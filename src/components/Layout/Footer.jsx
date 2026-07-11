@@ -66,8 +66,8 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} Capital Caps. Todos los derechos reservados.
         </p>
         <div className="footer-legal-links">
-          <span className="footer-legal-link">Street Culture Group</span>
-          <span className="footer-legal-link">En colaboración con @tian_cutz</span>
+          <span className="footer-legal-link">Desarrollado por Jorge Losada (JL)</span>
+          <span className="footer-legal-link">Street Culture &bull; @tian_cutz</span>
         </div>
       </div>
     </footer>

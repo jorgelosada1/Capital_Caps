@@ -20,6 +20,8 @@ export const PRODUCT_STATUS = {
   SOLD: 'vendida',
 };
 
+export const WHATSAPP_NUMBER = '573208620312'; // Colombia country code + number
+
 export const formatPrice = (price) => {
   return new Intl.NumberFormat(CURRENCY_LOCALE, {
     style: 'currency',
@@ -27,4 +29,15 @@ export const formatPrice = (price) => {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(price);
+};
+
+/**
+ * Generates a WhatsApp link to order a specific cap.
+ * @param {object} product - The product object
+ * @returns {string} WhatsApp URL
+ */
+export const getWhatsAppLink = (product) => {
+  const message = `¡Hola! 🧢 Me interesa comprar:\n\n*${product.name}*\nPrecio: ${formatPrice(product.price)}\n\n¿Está disponible?`;
+  const encoded = encodeURIComponent(message);
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
 };

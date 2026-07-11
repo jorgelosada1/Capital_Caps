@@ -5,7 +5,7 @@ import { PRODUCT_STATUS, formatPrice } from '../utils/constants';
 import '../styles/admin.css';
 
 export default function AdminPanel() {
-  const { products, toggleStatus, deleteProduct, getStats } = useProducts();
+  const { products, toggleStatus, deleteProduct, setStock, getStats } = useProducts();
   const { logout } = useAuth();
   const navigate = useNavigate();
 
@@ -22,6 +22,18 @@ export default function AdminPanel() {
     }
   };
 
+  const handleStockChange = (product, delta) => {
+    const newStock = product.stock + delta;
+    setStock(product.id, newStock);
+  };
+
+  const handleStockInput = (product, value) => {
+    const num = parseInt(value, 10);
+    if (!isNaN(num)) {
+      setStock(product.id, num);
+    }
+  };
+
   return (
     <div className="admin-page">
       <div className="admin-header-row">
@@ -35,7 +47,11 @@ export default function AdminPanel() {
       <div className="admin-summary">
         <div className="summary-card">
           <p className="summary-card-value">{stats.total}</p>
-          <p className="summary-card-label">TOTAL</p>
+          <p className="summary-card-label">MODELOS</p>
+        </div>
+        <div className="summary-card">
+          <p className="summary-card-value">{stats.totalUnits}</p>
+          <p className="summary-card-label">UNIDADES TOTAL</p>
         </div>
         <div className="summary-card">
           <p className="summary-card-value summary-card-value--available">{stats.available}</p>
@@ -43,7 +59,7 @@ export default function AdminPanel() {
         </div>
         <div className="summary-card">
           <p className="summary-card-value summary-card-value--sold">{stats.sold}</p>
-          <p className="summary-card-label">VENDIDAS</p>
+          <p className="summary-card-label">AGOTADAS</p>
         </div>
       </div>
 
@@ -55,7 +71,7 @@ export default function AdminPanel() {
               <th>IMAGEN</th>
               <th>NOMBRE</th>
               <th>PRECIO</th>
-              <th>CARPETA</th>
+              <th>STOCK</th>
               <th>ESTADO</th>
               <th>ACCIONES</th>
             </tr>
@@ -72,7 +88,30 @@ export default function AdminPanel() {
                 </td>
                 <td className="admin-product-name">{product.name}</td>
                 <td className="admin-price-tag">{formatPrice(product.price)}</td>
-                <td className="admin-folder">/{product.priceTier}/</td>
+                <td>
+                  <div className="admin-stock-control">
+                    <button
+                      className="admin-stock-btn"
+                      onClick={() => handleStockChange(product, -1)}
+                      disabled={product.stock <= 0}
+                    >
+                      −
+                    </button>
+                    <input
+                      type="number"
+                      className="admin-stock-input"
+                      value={product.stock}
+                      onChange={(e) => handleStockInput(product, e.target.value)}
+                      min="0"
+                    />
+                    <button
+                      className="admin-stock-btn"
+                      onClick={() => handleStockChange(product, 1)}
+                    >
+                      +
+                    </button>
+                  </div>
+                </td>
                 <td>
                   <span
                     className={`admin-status ${
@@ -82,7 +121,7 @@ export default function AdminPanel() {
                     }`}
                   >
                     {product.status === PRODUCT_STATUS.SOLD
-                      ? 'VENDIDA'
+                      ? 'AGOTADA'
                       : 'DISPONIBLE'}
                   </span>
                 </td>
@@ -96,7 +135,7 @@ export default function AdminPanel() {
                     onClick={() => toggleStatus(product.id)}
                   >
                     {product.status === PRODUCT_STATUS.AVAILABLE
-                      ? 'MARCAR VENDIDA'
+                      ? 'MARCAR AGOTADA'
                       : 'MARCAR DISPONIBLE'}
                   </button>
                   <button

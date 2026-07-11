@@ -15,7 +15,7 @@ export default function Header() {
     <header className="header">
       <div className="header-inner">
         <Link to="/" className="header-logo" onClick={closeMenu}>
-          CAPITAL CAPS
+          <img src="/Logo.png" alt="Capital Caps" className="header-logo-img" />
         </Link>
 
         {/* Desktop Navigation */}
@@ -109,6 +109,7 @@ export default function Header() {
           className="header-mobile-nav"
           style={menuOpen ? { opacity: 1, visibility: 'visible' } : {}}
         >
+          <img src="/Logo.png" alt="Capital Caps" className="header-mobile-logo" />
           <NavLink to="/" className="header-mobile-nav-link" onClick={closeMenu} end>
             Inicio
           </NavLink>

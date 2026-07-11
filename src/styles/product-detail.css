@@ -151,6 +151,86 @@
   transform: none;
 }
 
+/* ---- Stock Info ---- */
+.detail-stock-info {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+}
+
+/* ---- WhatsApp Buy Button ---- */
+.detail-buy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #25D366;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 16px 36px;
+  border: none;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+}
+
+.detail-buy-btn:hover {
+  background: #1ebe5d;
+  transform: translateY(-3px);
+  box-shadow: 5px 5px 0 rgba(37, 211, 102, 0.3);
+}
+
+.detail-buy-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ---- Sold Message ---- */
+.detail-sold-msg {
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border);
+  border-left: 4px solid var(--accent-alt);
+  padding: 1rem 1.25rem;
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-top: 0.5rem;
+}
+
+/* ---- Detail Meta ---- */
+.detail-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-meta-item {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.detail-meta-label {
+  font-family: var(--font-display);
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  margin-right: 6px;
+}
+
+.detail-meta-value {
+  color: var(--text-secondary);
+}
+
 /* ---- Detail Tags / Categories ---- */
 .detail-tags {
   display: flex;
@@ -195,6 +275,11 @@
   .detail-btn {
     width: 100%;
     text-align: center;
+  }
+
+  .detail-buy-btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 

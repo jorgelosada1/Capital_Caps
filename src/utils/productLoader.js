@@ -3,6 +3,7 @@ import { PRICE_FOLDER_MAP, PRODUCT_STATUS } from './constants';
 /**
  * Scans /public/images/{65,75,85}/ directories using Vite's import.meta.glob
  * and generates a product array automatically from found images.
+ * Each product starts with stock: 1. Admin can adjust stock in the panel.
  */
 export function loadProductsFromFolders() {
   // Use import.meta.glob to get all images in the price folders
@@ -42,6 +43,7 @@ export function loadProductsFromFolders() {
       priceTier: priceFolder,
       image: imageUrl,
       status: PRODUCT_STATUS.AVAILABLE,
+      stock: 1, // Default stock is 1, admin can change it
     });
   }
 

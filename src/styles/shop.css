@@ -1,0 +1,140 @@
+/* ============================================
+   CAPITAL CAPS — Shop Page
+   Street/Urban Aesthetic
+   ============================================ */
+
+/* ---- Shop Page ---- */
+.shop-page {
+  padding-top: 100px;
+  min-height: 100vh;
+  padding-inline: clamp(1rem, 5vw, 4rem);
+  padding-bottom: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ---- Shop Title ---- */
+.shop-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  text-align: center;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  color: var(--text-primary);
+}
+
+.shop-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: var(--accent);
+}
+
+/* ---- Filters ---- */
+.shop-filters {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 2px solid var(--border);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  padding: 8px 24px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.filter-btn:hover {
+  background-color: var(--accent);
+  color: var(--bg-primary);
+  border-color: var(--accent);
+}
+
+.filter-btn--active {
+  background-color: var(--accent);
+  color: var(--bg-primary);
+  border-color: var(--accent);
+}
+
+/* ---- Product Grid ---- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* ---- Empty State ---- */
+.shop-empty {
+  text-align: center;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  padding: 4rem 1rem;
+  text-transform: uppercase;
+  grid-column: 1 / -1;
+}
+
+.shop-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* ---- Sort / View Controls ---- */
+.shop-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.shop-count {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .shop-title {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+  }
+
+  .filter-btn {
+    padding: 6px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}

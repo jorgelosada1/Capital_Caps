@@ -1,0 +1,286 @@
+/* ============================================
+   CAPITAL CAPS — Additional Home Sections
+   Street/Urban Aesthetic
+   ============================================ */
+
+/* ---- Featured Drops Section ---- */
+.home-featured {
+  padding: 4rem clamp(1rem, 5vw, 4rem);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ---- Collage Showcase Section ---- */
+.home-showcase {
+  background: #000000;
+  border-top: 3px solid var(--border);
+  border-bottom: 3px solid var(--border);
+  padding: 6rem clamp(1rem, 5vw, 4rem);
+  position: relative;
+}
+
+.home-showcase::before {
+  content: 'STREETWEAR';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: var(--font-display);
+  font-size: 8rem;
+  color: rgba(255, 255, 255, 0.015);
+  line-height: 1;
+  pointer-events: none;
+  font-weight: 900;
+}
+
+.showcase-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.showcase-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.showcase-tag {
+  background: var(--accent);
+  color: var(--bg-primary);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  padding: 4px 12px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.showcase-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: 2px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.showcase-title span {
+  color: var(--accent);
+  text-shadow: 2px 2px 0 var(--border);
+}
+
+.showcase-desc {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.showcase-button {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  padding: 12px 30px;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.showcase-button:hover {
+  background-color: var(--accent);
+  color: var(--bg-primary);
+  box-shadow: 4px 4px 0 var(--text-primary);
+  transform: translate(-2px, -2px);
+}
+
+/* Image container with hard streetwear frame styling */
+.showcase-image-wrapper {
+  position: relative;
+  border: 3px solid var(--text-primary);
+  box-shadow: 10px 10px 0 var(--accent);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.showcase-image-wrapper:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 13px 13px 0 var(--accent-alt);
+}
+
+.showcase-img {
+  width: 100%;
+  aspect-ratio: 16/14;
+  object-fit: cover;
+  display: block;
+}
+
+.showcase-label {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  text-transform: uppercase;
+}
+
+/* ---- Philosophy / Manifesto section ---- */
+.home-manifesto {
+  padding: 6rem clamp(1rem, 5vw, 4rem);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.manifesto-card {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border);
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.manifesto-card:hover {
+  border-color: var(--accent);
+  box-shadow: 6px 6px 0 var(--accent);
+  transform: translate(-3px, -3px);
+}
+
+.manifesto-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: rgba(228, 255, 26, 0.15);
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  line-height: 1;
+}
+
+.manifesto-h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.manifesto-p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ---- Social Banner / Call to Action ---- */
+.home-social-banner {
+  background: linear-gradient(135deg, #111 0%, #000 100%);
+  border-top: 3px solid var(--border);
+  padding: 5rem 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.social-banner-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.social-banner-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 4rem);
+  letter-spacing: 3px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.social-banner-title span {
+  color: var(--accent);
+}
+
+.social-banner-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+
+.social-banner-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.social-banner-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  padding: 12px 28px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s;
+  text-transform: uppercase;
+}
+
+.social-banner-btn--instagram {
+  background: #E4FF1A;
+  color: #000;
+}
+
+.social-banner-btn--instagram:hover {
+  background: #fff;
+  box-shadow: 4px 4px 0 #E4FF1A;
+  transform: translate(-2px, -2px);
+}
+
+.social-banner-btn--tiktok {
+  background: #fff;
+  color: #000;
+}
+
+.social-banner-btn--tiktok:hover {
+  background: #E4FF1A;
+  box-shadow: 4px 4px 0 #fff;
+  transform: translate(-2px, -2px);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .showcase-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .manifesto-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

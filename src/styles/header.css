@@ -1,0 +1,257 @@
+/* ============================================
+   CAPITAL CAPS — Header
+   Street/Urban Aesthetic
+   ============================================ */
+
+/* ---- Main Header ---- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px clamp(1rem, 5vw, 4rem);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ---- Logo ---- */
+.header-logo {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 3px;
+  color: var(--accent);
+  text-decoration: none;
+  border: 3px solid var(--accent);
+  padding: 4px 12px;
+  transform: rotate(-2deg);
+  display: inline-block;
+  line-height: 1;
+  transition: background-color 0.3s, color 0.3s;
+  text-transform: uppercase;
+}
+
+.header-logo:hover {
+  background-color: var(--accent);
+  color: var(--bg-primary);
+}
+
+/* ---- Desktop Nav ---- */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.header-nav-link {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.header-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width 0.3s;
+}
+
+.header-nav-link:hover {
+  color: var(--accent);
+}
+
+.header-nav-link:hover::after {
+  width: 100%;
+}
+
+.header-nav-link--active {
+  color: var(--accent);
+}
+
+.header-nav-link--active::after {
+  width: 100%;
+}
+
+/* ---- Social Links ---- */
+.header-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  transition: color 0.3s, transform 0.2s;
+  padding: 4px;
+}
+
+.header-social-link:hover {
+  color: var(--accent);
+  transform: scale(1.1);
+}
+
+/* ---- Admin Icon ---- */
+.header-admin-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: color 0.3s, transform 0.3s;
+  padding: 4px;
+  margin-left: 8px;
+}
+
+.header-admin-icon:hover {
+  color: var(--accent);
+  transform: scale(1.1);
+}
+
+/* ---- Mobile Social Links ---- */
+.header-mobile-social {
+  display: flex;
+  gap: 24px;
+  margin-top: 2rem;
+}
+
+.header-mobile-social-link {
+  color: var(--text-primary);
+  transition: color 0.3s, transform 0.2s;
+}
+
+.header-mobile-social-link:hover {
+  color: var(--accent);
+  transform: scale(1.1);
+}
+
+/* ---- Mobile Hamburger (Checkbox Hack) ---- */
+.header-menu-toggle {
+  display: none;
+}
+
+.header-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  z-index: 1100;
+  position: relative;
+}
+
+.header-hamburger-line {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background-color: var(--text-primary);
+  transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+}
+
+/* Hamburger → X transformation */
+.header-menu-toggle:checked ~ .header-hamburger .header-hamburger-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+  background-color: var(--accent);
+}
+
+.header-menu-toggle:checked ~ .header-hamburger .header-hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.header-menu-toggle:checked ~ .header-hamburger .header-hamburger-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+  background-color: var(--accent);
+}
+
+/* ---- Mobile Nav Overlay ---- */
+.header-mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg-primary);
+  z-index: 1050;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.header-mobile-nav-link {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.header-mobile-nav-link:hover {
+  color: var(--accent);
+}
+
+.header-mobile-admin-link {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  margin-top: 2rem;
+  transition: color 0.3s;
+}
+
+.header-mobile-admin-link:hover {
+  color: var(--accent);
+}
+
+/* Show mobile nav when checkbox is checked */
+.header-menu-toggle:checked ~ .header-mobile-nav {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .header-nav {
+    display: none;
+  }
+
+  .header-hamburger {
+    display: flex;
+  }
+
+  .header-mobile-nav {
+    display: flex;
+  }
+}
+
+@media (min-width: 769px) {
+  .header-mobile-nav {
+    display: none !important;
+  }
+}

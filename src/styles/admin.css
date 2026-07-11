@@ -1,0 +1,247 @@
+/* ============================
+   ADMIN PANEL — Capital Caps
+   ============================ */
+
+.admin-page {
+  padding-top: 100px;
+  min-height: 100vh;
+  padding-inline: clamp(1rem, 5vw, 4rem);
+  padding-bottom: 4rem;
+  background: var(--bg-primary);
+}
+
+.admin-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.admin-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: 4px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.admin-logout {
+  background: transparent;
+  border: 2px solid var(--text-secondary);
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.admin-logout:hover {
+  border-color: var(--accent-alt);
+  color: var(--accent-alt);
+}
+
+/* Summary Cards */
+.admin-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 3rem;
+}
+
+.summary-card {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border);
+  padding: 1.5rem;
+  text-align: center;
+  transition: border-color 0.3s ease;
+}
+
+.summary-card:hover {
+  border-color: var(--accent);
+}
+
+.summary-card-value {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.summary-card-value--available {
+  color: var(--accent);
+}
+
+.summary-card-value--sold {
+  color: var(--accent-alt);
+}
+
+.summary-card-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+  margin-top: 8px;
+}
+
+/* Product Table */
+.admin-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.admin-table th {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  text-align: left;
+  padding: 12px;
+  border-bottom: 2px solid var(--border);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+
+.admin-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.admin-table tbody tr:hover {
+  background: var(--bg-secondary);
+}
+
+.admin-table-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+
+.admin-product-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.admin-price-tag {
+  font-family: var(--font-display);
+  color: var(--accent);
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+.admin-folder {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.admin-status {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.admin-status--available {
+  color: var(--accent);
+}
+
+.admin-status--sold {
+  color: var(--accent-alt);
+}
+
+/* Action Buttons */
+.admin-actions {
+  white-space: nowrap;
+}
+
+.admin-btn {
+  padding: 6px 14px;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  border: 2px solid;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 6px;
+  margin-bottom: 4px;
+  background: transparent;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.admin-btn--sell {
+  border-color: var(--accent-alt);
+  color: var(--accent-alt);
+}
+
+.admin-btn--sell:hover {
+  background: var(--accent-alt);
+  color: var(--text-primary);
+}
+
+.admin-btn--available {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.admin-btn--available:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
+.admin-btn--delete {
+  border-color: #666;
+  color: #666;
+}
+
+.admin-btn--delete:hover {
+  background: #666;
+  color: var(--text-primary);
+}
+
+.admin-empty {
+  text-align: center;
+  padding: 4rem 1rem;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-page {
+    padding-top: 90px;
+  }
+
+  .admin-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-btn {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+}

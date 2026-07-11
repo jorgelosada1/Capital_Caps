@@ -1,0 +1,242 @@
+/* ============================================
+   CAPITAL CAPS — Animations
+   Street/Urban Aesthetic
+   ============================================ */
+
+/* ---- Glitch Effect ---- */
+@keyframes glitch {
+  0% {
+    text-shadow:
+      2px 0 var(--accent),
+      -2px 0 var(--accent-alt);
+    clip-path: inset(0 0 0 0);
+  }
+  10% {
+    text-shadow:
+      -2px 2px var(--accent-alt),
+      2px -2px var(--accent);
+    clip-path: inset(20% 0 60% 0);
+  }
+  20% {
+    text-shadow:
+      2px -2px var(--accent),
+      -2px 2px var(--accent-alt);
+    clip-path: inset(80% 0 0 0);
+  }
+  30% {
+    text-shadow:
+      -3px 0 var(--accent-alt),
+      3px 0 var(--accent);
+    clip-path: inset(10% 0 70% 0);
+  }
+  40% {
+    text-shadow:
+      3px 3px var(--accent),
+      -3px -3px var(--accent-alt);
+    clip-path: inset(50% 0 30% 0);
+  }
+  50% {
+    text-shadow:
+      -1px 1px var(--accent-alt),
+      1px -1px var(--accent);
+    clip-path: inset(0 0 0 0);
+  }
+  60% {
+    text-shadow:
+      2px 0 var(--accent),
+      -2px 0 var(--accent-alt);
+    clip-path: inset(40% 0 40% 0);
+  }
+  70% {
+    text-shadow:
+      0 2px var(--accent-alt),
+      0 -2px var(--accent);
+    clip-path: inset(0 0 85% 0);
+  }
+  80% {
+    text-shadow:
+      -2px -2px var(--accent),
+      2px 2px var(--accent-alt);
+    clip-path: inset(70% 0 10% 0);
+  }
+  90% {
+    text-shadow:
+      1px 0 var(--accent-alt),
+      -1px 0 var(--accent);
+    clip-path: inset(15% 0 55% 0);
+  }
+  100% {
+    text-shadow:
+      2px 0 var(--accent),
+      -2px 0 var(--accent-alt);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* ---- Shake ---- */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-4px);
+  }
+  20% {
+    transform: translateX(4px);
+  }
+  30% {
+    transform: translateX(-4px);
+  }
+  40% {
+    transform: translateX(4px);
+  }
+  50% {
+    transform: translateX(-2px);
+  }
+  60% {
+    transform: translateX(2px);
+  }
+  70% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  90% {
+    transform: translateX(0);
+  }
+}
+
+/* ---- Stamp In (Rubber Stamp Effect) ---- */
+@keyframes stampIn {
+  0% {
+    transform: translate(-50%, -50%) rotate(-25deg) scale(1.5);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(-12deg) scale(0.95);
+    opacity: 1;
+  }
+  70% {
+    transform: translate(-50%, -50%) rotate(-17deg) scale(1.02);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-15deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ---- Fade Up ---- */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Slide In ---- */
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* ---- Pulse ---- */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* ---- Neon Flicker ---- */
+@keyframes neonFlicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow:
+      0 0 4px var(--accent),
+      0 0 11px var(--accent),
+      0 0 19px var(--accent);
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+/* ---- Scan Line ---- */
+@keyframes scanLine {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* ============================================
+   Animation Utility Classes
+   ============================================ */
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+.animate-fade-up-delay-1 {
+  animation: fadeUp 0.6s ease-out 0.1s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fadeUp 0.6s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-delay-3 {
+  animation: fadeUp 0.6s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.animate-stamp {
+  animation: stampIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-glitch {
+  animation: glitch 1s infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.animate-neon {
+  animation: neonFlicker 3s infinite alternate;
+}
+
+/* Hover-triggered animations */
+.hover-shake:hover {
+  animation: shake 0.4s ease-in-out;
+}
+
+.hover-pulse:hover {
+  animation: pulse 0.6s ease-in-out;
+}
+
+.hover-glitch:hover {
+  animation: glitch 0.3s;
+}

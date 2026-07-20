@@ -1,213 +1,352 @@
-/* ============================
-   FOOTER — Capital Caps
-   ============================ */
+/* ================================================================
+   CAPITAL CAPS — Footer
+   "La última pared del recorrido"
+   Industrial · Concrete · Graffiti · Street Editorial
+   ================================================================ */
 
 .footer {
-  background: #050505;
-  border-top: 3px solid var(--border);
   position: relative;
   overflow: hidden;
-  color: var(--text-primary);
+  background: #090909;
+  /* Layered concrete / noise texture */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(
+      -55deg,
+      rgba(255,255,255,0.007) 0px,
+      rgba(255,255,255,0.007) 1px,
+      transparent 1px,
+      transparent 28px
+    );
+  background-size: 300px 300px, auto;
+  border-top: 3px solid #000;
+  color: var(--worn-white);
 }
 
-/* ---- Caution Ticker Banner ---- */
-.footer-ticker {
-  background: var(--accent);
-  color: var(--bg-primary);
-  height: 38px;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  border-bottom: 2px solid var(--bg-primary);
-}
-
-.footer-ticker-inner {
-  display: flex;
-  width: 200%;
-  animation: footer-ticker-scroll 25s linear infinite;
+/* ── Ghost Watermark ── */
+.footer-watermark {
+  position: absolute;
+  bottom: 18%;
+  right: -1%;
+  font-family: var(--font-heavy);
+  font-size: clamp(7rem, 16vw, 14rem);
+  color: rgba(255,255,255,0.018);
+  pointer-events: none;
+  letter-spacing: 8px;
+  transform: rotate(-7deg);
   white-space: nowrap;
+  z-index: 0;
+  user-select: none;
 }
 
-.footer-ticker-inner span {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  letter-spacing: 3px;
-  padding-right: 2rem;
+/* ── Ticker Tape ── */
+.footer-ticker {
+  background: var(--neon-green);
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom: 3px solid #000;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.footer-ticker-track {
   display: inline-block;
-  text-transform: uppercase;
-  font-weight: 900;
+  padding: 8px 0;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  color: #000;
+  animation: footerTickerScroll 35s linear infinite;
 }
 
-@keyframes footer-ticker-scroll {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); }
+@keyframes footerTickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-/* ---- Footer Main Content ---- */
-.footer-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 4rem clamp(1rem, 5vw, 4rem) 2rem;
+/* ── Main 3-column grid ── */
+.footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.8fr 1fr 1.4fr;
+  gap: 2rem clamp(1.5rem, 4vw, 3rem);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.8rem clamp(1.2rem, 5vw, 3.5rem) 2rem;
+  position: relative;
+  z-index: 1;
 }
 
-/* Left Brand Column */
-.footer-brand-col {
+/* ────────────────────────────────────
+   COLUMN 1 — Brand
+   ──────────────────────────────────── */
+.footer-brand {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  align-items: flex-start;
+  gap: 12px;
 }
 
-.footer-brand {
+.footer-logo-text {
   font-family: var(--font-display);
-  font-size: 2.5rem;
-  letter-spacing: 4px;
-  color: var(--accent);
-  text-shadow: 2px 2px 0 var(--border);
-  line-height: 1;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 #000, 3px 3px 0 var(--neon-green);
+  transition: text-shadow 0.3s ease, color 0.3s ease;
+  user-select: none;
+  cursor: default;
+}
+.footer-logo-text:hover {
+  color: var(--neon-green);
+  text-shadow: 2px 2px 0 #000, 0 0 10px rgba(182,255,59,0.6);
 }
 
 .footer-tagline {
   font-family: var(--font-body);
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  max-width: 350px;
-  line-height: 1.6;
+  font-size: 0.83rem;
+  color: #555;
+  line-height: 1.65;
+  border-left: 2px solid rgba(255,255,255,0.08);
+  padding-left: 12px;
+  max-width: 340px;
 }
 
-/* Middle & Right Navigation Columns */
-.footer-links-col {
+.footer-phrase {
+  font-family: var(--font-marker);
+  font-size: 1rem;
+  color: rgba(182,255,59,0.6);
+  letter-spacing: 1px;
+}
+
+/* ────────────────────────────────────
+   COLUMN 2 — Navigation
+   ──────────────────────────────────── */
+.footer-nav-col {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 10px;
 }
 
 .footer-col-title {
   font-family: var(--font-display);
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-  color: var(--text-primary);
-  border-bottom: 2px solid var(--border);
-  padding-bottom: 6px;
-  margin-bottom: 0.5rem;
+  font-size: 0.78rem;
+  letter-spacing: 3px;
+  color: var(--neon-green);
   text-transform: uppercase;
+  border-bottom: 1px solid rgba(182,255,59,0.15);
+  padding-bottom: 8px;
+  margin-bottom: 4px;
 }
 
-.footer-link {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.3s, padding-left 0.3s;
-}
-
-.footer-link:hover {
-  color: var(--accent);
-  padding-left: 6px;
-}
-
-/* Social Grid Cards */
-.footer-social-grid {
+.footer-nav {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  width: 100%;
+  gap: 6px;
 }
 
-.footer-social-card {
+.footer-nav-link {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: #555;
+  text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  background: var(--bg-secondary);
-  border: 2px solid var(--border);
-  color: var(--text-primary);
+  gap: 8px;
+  transition: color 0.2s ease, gap 0.2s ease;
+  width: fit-content;
+}
+
+.footer-nav-arrow {
+  color: var(--neon-green);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  font-size: 0.8rem;
+}
+
+.footer-nav-link:hover {
+  color: var(--worn-white);
+}
+.footer-nav-link:hover .footer-nav-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.footer-nav-link--dim { color: #333; }
+.footer-nav-link--dim:hover { color: #555; }
+
+/* Spray tag decoration */
+.footer-spray-tag {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 2rem;
+  color: rgba(182,255,59,0.08);
+  font-family: var(--font-marker);
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+/* ────────────────────────────────────
+   COLUMN 3 — Social Metal Plates
+   ──────────────────────────────────── */
+.footer-social-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-social-plates {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Riveted industrial plate */
+.footer-plate {
+  display: flex;
+  align-items: stretch;
   text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: linear-gradient(
+    135deg,
+    rgba(40,40,40,0.9) 0%,
+    rgba(20,20,20,0.95) 100%
+  );
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05),
+              2px 2px 6px rgba(0,0,0,0.5);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-plate::before {
+  /* subtle brushed metal sheen on hover */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(182,255,59,0.04) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.footer-plate:hover {
+  border-color: rgba(182,255,59,0.35);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06),
+              2px 2px 12px rgba(0,0,0,0.5),
+              0 0 14px rgba(182,255,59,0.08);
+}
+.footer-plate:hover::before { opacity: 1; }
+.footer-plate:hover .footer-plate-inner { color: var(--worn-white); }
+.footer-plate:hover .footer-plate-inner svg { color: var(--neon-green); }
+
+/* Left rivet strip */
+.footer-plate-rivets {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 8px;
+  background: rgba(0,0,0,0.3);
+  border-right: 1px solid rgba(255,255,255,0.05);
+  gap: 18px;
+}
+
+.footer-plate-rivets span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #333;
+  border: 1px solid #444;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+  display: block;
+}
+
+/* Main plate content */
+.footer-plate-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  color: #555;
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 0.88rem;
   letter-spacing: 2px;
-  transition: all 0.3s ease;
+  transition: color 0.25s ease;
+  flex: 1;
 }
 
-.footer-social-card svg {
-  transition: transform 0.3s ease;
+.footer-plate-inner svg {
+  flex-shrink: 0;
+  transition: color 0.25s ease;
 }
 
-.footer-social-card:hover {
-  border-color: var(--accent);
-  box-shadow: 4px 4px 0 var(--accent);
-  transform: translate(-3px, -3px);
-  color: var(--accent);
+.footer-plate-handle {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  color: #333;
+  margin-left: auto;
+  transition: color 0.25s ease;
+}
+.footer-plate:hover .footer-plate-handle {
+  color: rgba(182,255,59,0.6);
 }
 
-.footer-social-card:hover svg {
-  transform: scale(1.15) rotate(5deg);
-}
-
-/* ---- Bottom Bar ---- */
+/* ────────────────────────────────────
+   BOTTOM BAR
+   ──────────────────────────────────── */
 .footer-bottom {
-  border-top: 1px solid var(--border);
-  padding: 2rem clamp(1rem, 5vw, 4rem) 0;
-  margin-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 1rem clamp(1.2rem, 5vw, 3.5rem);
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .footer-copy {
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-  opacity: 0.8;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: #333;
+  letter-spacing: 0.5px;
 }
 
-.footer-legal-links {
-  display: flex;
-  gap: 20px;
+/* Marker-pen style signature — NOT a button */
+.footer-sig {
+  font-family: var(--font-marker);
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.22);
+  letter-spacing: 1px;
+  cursor: default;
+  transition: color 0.25s ease;
+}
+.footer-sig:hover {
+  color: rgba(182,255,59,0.4);
 }
 
-.footer-legal-link {
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.footer-legal-link:hover {
-  color: var(--accent);
-}
-
-/* ---- Responsive ---- */
-@media (max-width: 900px) {
-  .footer-content {
+/* ────────────────────────────────────
+   RESPONSIVE
+   ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .footer-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    padding: 2rem 1.2rem 1.5rem;
+    gap: 2rem;
   }
-  
-  .footer-brand-col {
-    align-items: center;
-    text-align: center;
-  }
-  
-  .footer-tagline {
-    max-width: 100%;
-  }
-
-  .footer-col-title {
-    text-align: center;
-  }
-
-  .footer-link {
-    text-align: center;
-  }
-
+  .footer-watermark { display: none; }
   .footer-bottom {
     flex-direction: column;
-    text-align: center;
+    align-items: flex-start;
+    gap: 6px;
   }
 }

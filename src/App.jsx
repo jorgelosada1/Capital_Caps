@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ProductProvider } from './context/ProductContext';
 import { AuthProvider } from './context/AuthContext';
@@ -8,11 +9,17 @@ import ProductDetail from './pages/ProductDetail';
 import Login from './pages/Login';
 import AdminPanel from './pages/AdminPanel';
 import ProtectedRoute from './components/ProtectedRoute';
+import FenceIntro from './components/FenceIntro';
 
 export default function App() {
+  const [introComplete, setIntroComplete] = useState(false);
+
   return (
     <AuthProvider>
       <ProductProvider>
+        {/* Fence intro gate on first load */}
+        {!introComplete && <FenceIntro onComplete={() => setIntroComplete(true)} />}
+
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>

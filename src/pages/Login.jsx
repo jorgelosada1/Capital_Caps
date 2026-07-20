@@ -31,7 +31,11 @@ export default function Login() {
   return (
     <div className="login-page">
       <form className="login-card" onSubmit={handleSubmit}>
-        <h1 className="login-title">ADMIN</h1>
+        <div className="tape-corner tape-corner--top-left"></div>
+        <div className="tape-corner tape-corner--top-right"></div>
+        <div className="tape-corner tape-corner--bottom-left"></div>
+        <div className="tape-corner tape-corner--bottom-right"></div>
+        <h1 className="login-title">ACCESO ADMIN</h1>
 
         <label className="login-label" htmlFor="login-username">
           USUARIO

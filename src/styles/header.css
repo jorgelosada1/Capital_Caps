@@ -1,26 +1,55 @@
 /* ============================================
    CAPITAL CAPS — Header
-   Street/Urban Aesthetic
+   Industrial Metal Bar Navigation
    ============================================ */
 
-/* ---- Main Header ---- */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(10, 10, 10, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 2px solid var(--border);
+  /* Metal brushed texture */
+  background:
+    linear-gradient(180deg,
+      rgba(28,28,28,0.97) 0%,
+      rgba(12,12,12,0.99) 100%
+    ),
+    repeating-linear-gradient(90deg,
+      rgba(255,255,255,0.012) 0px,
+      rgba(255,255,255,0.012) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 3px solid #000;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.95), 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* Metal rivet dots on bottom edge */
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--neon-green) 0px,
+    var(--neon-green) 2px,
+    transparent 2px,
+    transparent 18px
+  );
+  opacity: 0.6;
 }
 
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px clamp(1rem, 5vw, 4rem);
+  padding: 10px clamp(1rem, 5vw, 4rem);
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -30,27 +59,23 @@
   text-decoration: none;
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 60px;
-  width: 150px;
-  overflow: hidden;
-  transition: transform 0.3s;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .header-logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.06) rotate(-2deg);
 }
 
 .header-logo-img {
-  height: 200px;
+  height: 58px;
   width: auto;
-  object-fit: contain;
-  margin-top: -12px;
   display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.1)) drop-shadow(2px 2px 0 #000);
 }
 
 .header-mobile-logo {
-  height: 120px;
+  height: 80px;
   width: auto;
   object-fit: contain;
   margin-bottom: 1.5rem;
@@ -60,60 +85,52 @@
 .header-nav {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 20px;
 }
 
+/* Nav Links */
 .header-nav-link {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  color: var(--text-primary);
-  text-transform: uppercase;
+  font-family: var(--font-heavy);
+  font-size: 1.2rem;
   letter-spacing: 2px;
+  color: #A0A0A0;
+  text-transform: uppercase;
   text-decoration: none;
+  padding: 6px 14px;
   position: relative;
-  transition: color 0.3s;
-}
-
-.header-nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--accent);
-  transition: width 0.3s;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 2px solid transparent;
 }
 
 .header-nav-link:hover {
-  color: var(--accent);
+  color: var(--worn-white);
+  letter-spacing: 3px;
 }
 
-.header-nav-link:hover::after {
-  width: 100%;
-}
-
+/* Active = fluorescent sticker label */
 .header-nav-link--active {
-  color: var(--accent);
+  color: #000000 !important;
+  background: var(--neon-green) !important;
+  border: 2.5px solid #000 !important;
+  box-shadow: 3px 3px 0 #000 !important;
+  transform: rotate(-1.5deg) !important;
+  letter-spacing: 2px !important;
 }
 
-.header-nav-link--active::after {
-  width: 100%;
-}
-
-/* ---- Social Links ---- */
+/* ---- Social / Icon Links ---- */
 .header-social-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-primary);
-  transition: color 0.3s, transform 0.2s;
-  padding: 4px;
+  color: #666;
+  transition: all 0.2s ease;
+  padding: 6px;
 }
 
 .header-social-link:hover {
-  color: var(--accent);
-  transform: scale(1.1);
+  color: var(--neon-green);
+  filter: drop-shadow(0 0 8px var(--neon-green));
+  transform: scale(1.25) rotate(6deg);
 }
 
 /* ---- Admin Icon ---- */
@@ -121,147 +138,104 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
-  transition: color 0.3s, transform 0.3s;
-  padding: 4px;
-  margin-left: 8px;
+  color: #666;
+  background: #1A1A1A;
+  border: 2px solid #2A2A2A;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.25s ease;
+  box-shadow: 2px 2px 0 #000;
 }
 
 .header-admin-icon:hover {
-  color: var(--accent);
-  transform: scale(1.1);
+  color: #000;
+  background: var(--neon-green);
+  border-color: #000;
+  box-shadow: 3px 3px 0 #000, 0 0 14px rgba(182,255,59,0.4);
+  transform: scale(1.15) rotate(-6deg);
 }
 
-/* ---- Mobile Social Links ---- */
-.header-mobile-social {
-  display: flex;
-  gap: 24px;
-  margin-top: 2rem;
-}
-
-.header-mobile-social-link {
-  color: var(--text-primary);
-  transition: color 0.3s, transform 0.2s;
-}
-
-.header-mobile-social-link:hover {
-  color: var(--accent);
-  transform: scale(1.1);
-}
-
-/* ---- Mobile Hamburger (Checkbox Hack) ---- */
-.header-menu-toggle {
-  display: none;
-}
-
+/* ---- Hamburger ---- */
 .header-hamburger {
   display: none;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  width: 36px;
-  height: 36px;
+  justify-content: space-around;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
   cursor: pointer;
-  z-index: 1100;
-  position: relative;
+  padding: 0;
+  z-index: 1050;
 }
 
 .header-hamburger-line {
-  display: block;
-  width: 26px;
+  width: 32px;
   height: 3px;
-  background-color: var(--text-primary);
-  transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
-}
-
-/* Hamburger → X transformation */
-.header-menu-toggle:checked ~ .header-hamburger .header-hamburger-line:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-  background-color: var(--accent);
-}
-
-.header-menu-toggle:checked ~ .header-hamburger .header-hamburger-line:nth-child(2) {
-  opacity: 0;
-}
-
-.header-menu-toggle:checked ~ .header-hamburger .header-hamburger-line:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-  background-color: var(--accent);
+  background-color: var(--neon-green);
+  transition: all 0.3s ease;
+  transform-origin: 1px;
 }
 
 /* ---- Mobile Nav Overlay ---- */
 .header-mobile-nav {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: var(--bg-primary);
-  z-index: 1050;
+  background: rgba(8,8,8,0.99);
+  backdrop-filter: blur(20px);
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 24px;
+  z-index: 1045;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .header-mobile-nav-link {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 6vw, 3rem);
-  color: var(--text-primary);
-  text-transform: uppercase;
+  font-family: var(--font-heavy);
+  font-size: 2.4rem;
   letter-spacing: 4px;
-  text-decoration: none;
-  transition: color 0.3s;
-  position: relative;
-}
-
-.header-mobile-nav-link:hover {
-  color: var(--accent);
-}
-
-.header-mobile-admin-link {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  color: var(--text-secondary);
+  color: #888;
   text-transform: uppercase;
-  letter-spacing: 2px;
   text-decoration: none;
-  margin-top: 2rem;
-  transition: color 0.3s;
+  padding: 8px 24px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
 }
 
-.header-mobile-admin-link:hover {
-  color: var(--accent);
+.header-mobile-nav-link:hover,
+.header-mobile-nav-link.active {
+  color: #000;
+  background: var(--neon-green);
+  border-color: #000;
+  box-shadow: 4px 4px 0 #000;
+  transform: rotate(-2deg);
 }
 
-/* Show mobile nav when checkbox is checked */
-.header-menu-toggle:checked ~ .header-mobile-nav {
-  opacity: 1;
-  visibility: visible;
+.header-mobile-social {
+  display: flex;
+  gap: 24px;
+  margin-top: 16px;
 }
 
-/* ---- Responsive ---- */
+.header-mobile-social-link {
+  color: #666;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.header-mobile-social-link:hover {
+  color: var(--neon-green);
+  transform: scale(1.2);
+}
+
 @media (max-width: 768px) {
-  .header-nav {
-    display: none;
-  }
-
-  .header-hamburger {
-    display: flex;
-  }
-
-  .header-mobile-nav {
-    display: flex;
-  }
-}
-
-@media (min-width: 769px) {
-  .header-mobile-nav {
-    display: none !important;
-  }
+  .header-nav { display: none; }
+  .header-hamburger { display: flex; }
+  .header-logo-img { height: 46px; }
 }

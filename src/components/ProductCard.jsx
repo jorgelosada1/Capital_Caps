@@ -1,48 +1,118 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PRODUCT_STATUS, formatPrice, getWhatsAppLink } from '../utils/constants';
-import SoldBadge from './SoldBadge';
 import '../styles/product-card.css';
 
 export default function ProductCard({ product }) {
   const isSold = product.status === PRODUCT_STATUS.SOLD;
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  // Check if this product is in favorites
+  useEffect(() => {
+    try {
+      const favs = JSON.parse(localStorage.getItem('capitalcaps_favs') || '[]');
+      setIsFavorite(favs.includes(product.id));
+    } catch (e) {
+      console.error(e);
+    }
+  }, [product.id]);
+
+  const toggleFavorite = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      const favs = JSON.parse(localStorage.getItem('capitalcaps_favs') || '[]');
+      let newFavs;
+      if (isFavorite) {
+        newFavs = favs.filter(id => id !== product.id);
+      } else {
+        newFavs = [...favs, product.id];
+      }
+      localStorage.setItem('capitalcaps_favs', JSON.stringify(newFavs));
+      setIsFavorite(!isFavorite);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  // Deterministic styling to keep cards looking different yet consistent
+  const getDecorationType = (id) => {
+    if (!id) return 'none';
+    let hash = 0;
+    for (let i = 0; i < id.length; i++) {
+      hash = id.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const index = Math.abs(hash) % 5;
+    // 0: masking tape corner, 1: street sticker, 2: mini metal tag, 3: subtle graffiti paint drip, 4: clean/none
+    return ['tape', 'sticker', 'tag', 'graffiti', 'none'][index];
+  };
+
+  const decType = getDecorationType(product.id);
 
   return (
-    <div className={`product-card ${isSold ? 'product-card--sold' : ''}`}>
-      <div className="product-card-image-wrapper">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="product-card-image"
-          loading="lazy"
-        />
-        {isSold && <SoldBadge />}
-      </div>
-      <div className="product-card-info">
-        <h3 className="product-card-name">{product.name}</h3>
-        <p className="product-card-price">{formatPrice(product.price)}</p>
-        {product.stock > 0 && !isSold && (
-          <span className="product-card-stock">
-            {product.stock} {product.stock === 1 ? 'disponible' : 'disponibles'}
-          </span>
-        )}
-        <div className="product-card-actions">
-          <Link to={`/producto/${product.id}`} className="product-card-btn product-card-btn--detail">
-            VER DETALLE
-          </Link>
-          {!isSold && (
+    <div className={`product-card product-card--dec-${decType} ${isSold ? 'product-card--sold' : ''}`}>
+      
+      {/* Scattered Decorations */}
+      {decType === 'tape' && <div className="card-dec-tape"></div>}
+      {decType === 'sticker' && <div className="card-dec-sticker font-marker">CAPITAL</div>}
+      {decType === 'tag' && <div className="card-dec-tag"></div>}
+      {decType === 'graffiti' && <div className="card-dec-graffiti">✕</div>}
+
+      <Link to={`/producto/${product.id}`} className="product-card-link-wrapper">
+        <div className="product-card-image-wrapper">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="product-card-image"
+            loading="lazy"
+          />
+          
+          {/* Sold badge as a subtle corner ribbon instead of covering the photo */}
+          {isSold && (
+            <span className="product-card-sold-badge-discrete">AGOTADO</span>
+          )}
+        </div>
+
+        <div className="product-card-info">
+          <h3 className="product-card-name">{product.name}</h3>
+          
+          <div className="product-card-price-row">
+            <span className="product-card-price">{formatPrice(product.price)}</span>
+            <span className="product-card-status">
+              {isSold ? 'Agotado' : 'Disponible'}
+            </span>
+          </div>
+        </div>
+      </Link>
+
+      {/* Industrial premium action layout */}
+      <div className="product-card-actions-wrapper">
+        <Link to={`/producto/${product.id}`} className="product-card-main-btn">
+          VER PRODUCTO
+        </Link>
+        
+        {!isSold && (
+          <div className="product-card-hover-actions">
             <a
               href={getWhatsAppLink(product)}
               target="_blank"
               rel="noopener noreferrer"
-              className="product-card-btn product-card-btn--buy"
+              className="product-card-action-btn product-card-action-btn--whatsapp"
+              title="Comprar por WhatsApp"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink: 0 }}>
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
-              COMPRAR
+              Comprar
             </a>
-          )}
-        </div>
+            <button
+              onClick={toggleFavorite}
+              className={`product-card-action-btn product-card-action-btn--fav ${isFavorite ? 'active' : ''}`}
+              title={isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill={isFavorite ? "var(--rust-red)" : "none"} stroke={isFavorite ? "var(--rust-red)" : "currentColor"} strokeWidth="2.5" style={{ display: 'block' }}>
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

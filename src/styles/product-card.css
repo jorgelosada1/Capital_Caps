@@ -1,210 +1,332 @@
 /* ============================================
-   CAPITAL CAPS — Product Card
-   Street/Urban Aesthetic
+   CAPITAL CAPS — Premium Product Card Style
+   Minimalist Urban / Collection Poster
    ============================================ */
 
-/* ---- Product Card ---- */
 .product-card {
-  background-color: var(--bg-secondary);
-  border: 2px solid var(--border);
+  background: #121212; /* Dark industrial backdrop */
+  border: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-}
-
-.product-card:hover {
-  transform: scale(1.03);
-  border-color: var(--accent);
-  box-shadow: 6px 6px 0 var(--accent);
-}
-
-/* ---- Image Wrapper ---- */
-.product-card-image-wrapper {
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  background-color: var(--bg-tertiary);
-  position: relative;
-}
-
-/* ---- Product Image ---- */
-.product-card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-  display: block;
-}
-
-.product-card:hover .product-card-image {
-  transform: scale(1.1);
-}
-
-/* ---- Card Info ---- */
-.product-card-info {
-  padding: 16px;
-}
-
-/* ---- Product Name ---- */
-.product-card-name {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--text-primary);
-  line-height: 1.2;
-}
-
-/* ---- Product Price ---- */
-.product-card-price {
-  color: var(--accent);
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  margin-top: 4px;
-  line-height: 1;
-}
-
-/* ---- Stock Label ---- */
-.product-card-stock {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  color: var(--text-secondary);
-  margin-top: 6px;
-}
-
-/* ---- Actions Row ---- */
-.product-card-actions {
   display: flex;
-  gap: 8px;
-  margin-top: 12px;
+  flex-direction: column;
+  height: 100%;
+  aspect-ratio: 3 / 4;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 0.3s ease;
 }
 
-/* ---- Card Button (base) ---- */
-.product-card-btn {
-  flex: 1;
-  background-color: var(--accent);
-  color: var(--bg-primary);
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  padding: 10px 8px;
-  border: none;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+/* Card hover: elevation, increased shadow, border highlight */
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.6), 0 0 15px rgba(182, 255, 59, 0.15);
+  border-color: rgba(182, 255, 59, 0.3);
+}
+
+/* Link wrapper stretching across image and info */
+.product-card-link-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  text-decoration: none;
+  color: inherit;
+  height: calc(100% - 44px);
+}
+
+/* ---- Photograph Container (70-75% of the card) ---- */
+.product-card-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 72%;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #1b1b1b 0%, #0d0d0d 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+}
+
+/* Image with soft shadow around the cap */
+.product-card-image {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+              filter 0.5s ease;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.6));
+  display: block;
+}
+
+/* Subtle image zoom on hover */
+.product-card:hover .product-card-image {
+  transform: scale(1.06) rotate(1deg);
+  filter: drop-shadow(0 16px 30px rgba(182, 255, 59, 0.25));
+}
+
+/* ---- Premium Sold Diagonal Corner Ribbon ---- */
+.product-card-sold-badge-discrete {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--rust-red);
+  color: #FFFFFF;
+  font-family: var(--font-heavy);
+  font-size: 0.82rem;
+  letter-spacing: 2px;
+  padding: 6px 36px;
+  /* Rotate diagonally across the top-left corner */
+  transform: rotate(-45deg) translate(-28px, -6px);
+  transform-origin: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  text-transform: uppercase;
+  width: 140px;
   text-align: center;
-  text-decoration: none;
-}
-
-.product-card-btn:hover {
-  transform: translateY(-2px);
-}
-
-.product-card-btn:active {
-  transform: translateY(0);
-}
-
-/* Detail button */
-.product-card-btn--detail {
-  background: transparent;
-  color: var(--text-primary);
-  border: 2px solid var(--border);
-}
-
-.product-card-btn--detail:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-/* Buy / WhatsApp button */
-.product-card-btn--buy {
-  background: #25D366;
-  color: #fff;
   font-weight: bold;
 }
 
-.product-card-btn--buy:hover {
-  background: #1ebe5d;
-  box-shadow: 3px 3px 0 rgba(37, 211, 102, 0.3);
+/* Low stock indicator */
+.product-card-low-stock-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--rust-red);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  padding: 4px 10px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+  text-transform: uppercase;
+}
+
+/* ---- Info Section (Premium, clean layout) ---- */
+.product-card-info {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  background: #111111;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Smaller, elegant name instead of huge blocks */
+.product-card-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--worn-white);
+  line-height: 1.2;
+  margin-bottom: 6px;
+  font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-card-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+/* Clean, 30% smaller neon price tag */
+.product-card-price {
+  color: #000000;
+  background: var(--neon-green);
+  font-family: var(--font-heavy);
+  font-size: 1.05rem;
+  padding: 2px 8px;
+  letter-spacing: 1px;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.9);
+}
+
+.product-card-status {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: #777777;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ---- Industrial Premium Button Drawer (Interactive Hover) ---- */
+.product-card-actions-wrapper {
+  position: relative;
+  height: 44px;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Main Industrial Button visible by default */
+.product-card-main-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #181818;
+  color: var(--worn-white);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.product-card-main-btn:hover {
+  background: #222222;
+}
+
+/* Drawer containing purchase/fav controls, slides up on card hover */
+.product-card-hover-actions {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 5;
+}
+
+.product-card:hover .product-card-hover-actions {
+  transform: translateY(0);
+}
+
+/* Individual action drawer buttons */
+.product-card-action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.product-card-action-btn--whatsapp {
+  background: var(--neon-green);
+  color: #000000;
+  font-weight: bold;
+  border-right: 1px solid #000;
+}
+
+.product-card-action-btn--whatsapp:hover {
+  background: #ffffff;
+}
+
+.product-card-action-btn--fav {
+  background: #181818;
+  color: #ffffff;
+  max-width: 50px;
+}
+
+.product-card-action-btn--fav:hover {
+  background: #252525;
+}
+
+.product-card-action-btn--fav.active {
+  color: var(--rust-red);
 }
 
 /* ============================================
-   Sold Out State
+   RANDOMIZED / SCATTERED DECORATIONS
    ============================================ */
 
-.product-card--sold {
-  pointer-events: auto;
+/* 0: Masking Tape Corner decoration (only on cards marked as tape) */
+.product-card--dec-tape .card-dec-tape {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  width: 44px;
+  height: 18px;
+  background: rgba(225, 215, 190, 0.7);
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  transform: rotate(-10deg);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* 1: Street Sticker badge decoration */
+.product-card--dec-sticker .card-dec-sticker {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--neon-green);
+  color: #000;
+  font-family: var(--font-marker);
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border: 1.5px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  transform: rotate(4deg);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* 2: Mini industrial tag decoration */
+.product-card--dec-tag .card-dec-tag {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  width: 14px;
+  height: 24px;
+  background: #2b2b2b;
+  border: 1px solid #444;
+  border-top: none;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.product-card--dec-tag .card-dec-tag::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  width: 4px;
+  height: 4px;
+  background: #000;
+  border-radius: 50%;
+}
+
+/* 3: Subtle hand-drawn graffiti decoration */
+.product-card--dec-graffiti .card-dec-graffiti {
+  position: absolute;
+  bottom: 50px;
+  right: 12px;
+  color: rgba(182, 255, 59, 0.15);
+  font-family: var(--font-graffiti);
+  font-size: 1.4rem;
+  transform: rotate(-8deg);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Sold Card subtle overlay - does not block visibility */
+.product-card--sold .product-card-image-wrapper {
+  background: radial-gradient(circle at center, #151515 0%, #080808 100%);
 }
 
 .product-card--sold .product-card-image {
-  filter: grayscale(100%);
   opacity: 0.5;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.8)) grayscale(80%);
 }
 
-.product-card--sold:hover {
-  transform: none;
-  border-color: var(--border);
-  box-shadow: none;
-}
-
-.product-card--sold:hover .product-card-image {
-  transform: none;
-}
-
-/* ---- Sold Badge (Rubber Stamp) ---- */
-.sold-badge {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-15deg);
-  color: var(--accent-alt);
-  border: 4px solid var(--accent-alt);
-  font-family: var(--font-display);
-  font-size: 2rem;
-  letter-spacing: 4px;
-  padding: 8px 20px;
-  text-transform: uppercase;
-  z-index: 2;
-  pointer-events: none;
-  background: rgba(0, 0, 0, 0.7);
-  animation: stampIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-/* ---- Product Card Category Tag ---- */
-.product-card-tag {
-  position: absolute;
-  top: 12px;
-  left: 0;
-  background-color: var(--accent);
-  color: var(--bg-primary);
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  padding: 4px 12px;
-  text-transform: uppercase;
-  z-index: 2;
-}
-
-/* ---- Responsive ---- */
+/* ---- Responsive styling ---- */
 @media (max-width: 480px) {
   .product-card-name {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
   }
-
   .product-card-price {
-    font-size: 1.3rem;
-  }
-
-  .sold-badge {
-    font-size: 1.5rem;
-    letter-spacing: 3px;
-    padding: 6px 14px;
+    font-size: 0.95rem;
   }
 }

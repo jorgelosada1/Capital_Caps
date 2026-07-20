@@ -1,0 +1,237 @@
+/* ============================================
+   CAPITAL CAPS — Fence Intro Gate Animation
+   Chain-Link Fence slides open on page load
+   ============================================ */
+
+.fence-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Background layer visible through fence */
+.fence-bg {
+  position: absolute;
+  inset: 0;
+  background: #080808;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Smoke / atmospheric blur blobs */
+.fence-bg-smoke {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.fence-bg-smoke--1 {
+  width: 400px;
+  height: 400px;
+  background: rgba(182, 255, 59, 0.06);
+  top: -50px;
+  left: 20%;
+  animation: smokeDrift 6s ease-in-out infinite alternate;
+}
+
+.fence-bg-smoke--2 {
+  width: 300px;
+  height: 300px;
+  background: rgba(200, 62, 43, 0.05);
+  bottom: 10%;
+  right: 15%;
+  animation: smokeDrift 8s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes smokeDrift {
+  0% { transform: translateY(0) scale(1); opacity: 0.6; }
+  100% { transform: translateY(-30px) scale(1.15); opacity: 1; }
+}
+
+/* Neon Glow behind logo */
+.fence-bg-glow {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(182, 255, 59, 0.12) 0%, transparent 70%);
+  animation: glowPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  100% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Logo behind fence (blurred until gate opens) */
+.fence-bg-logo {
+  position: absolute;
+  z-index: 2;
+  filter: blur(3px) brightness(0.7);
+  transition: filter 1.2s ease 1.2s;
+}
+
+.fence-intro--opening .fence-bg-logo {
+  filter: blur(0) brightness(1);
+}
+
+.fence-bg-logo img {
+  width: clamp(220px, 35vw, 380px);
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(182, 255, 59, 0.5)) drop-shadow(0 0 40px rgba(182, 255, 59, 0.2));
+}
+
+/* Background graffiti tags */
+.fence-bg-tag {
+  position: absolute;
+  color: rgba(182, 255, 59, 0.18);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.fence-bg-tag--1 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  top: 10%;
+  left: 8%;
+  transform: rotate(-10deg);
+}
+
+.fence-bg-tag--2 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  bottom: 12%;
+  right: 8%;
+  transform: rotate(8deg);
+  color: rgba(200, 62, 43, 0.18);
+}
+
+.fence-bg-tag--3 {
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  bottom: 25%;
+  left: 12%;
+  letter-spacing: 6px;
+  color: rgba(255, 255, 255, 0.08);
+}
+
+/* ---- Gate Panels ---- */
+.fence-panel {
+  position: relative;
+  flex: 1;
+  z-index: 2;
+  background: rgba(18, 18, 18, 0.92);
+  transition: transform 1.6s cubic-bezier(0.86, 0, 0.07, 1);
+  will-change: transform;
+}
+
+.fence-panel--left {
+  transform-origin: left center;
+}
+
+.fence-panel--right {
+  transform-origin: right center;
+}
+
+/* Opening animation */
+.fence-intro--opening .fence-panel--left {
+  transform: translateX(-100%);
+}
+
+.fence-intro--opening .fence-panel--right {
+  transform: translateX(100%);
+}
+
+/* SVG fills panel */
+.fence-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Rivet bolts on metal frame */
+.fence-rivet {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ccc, #555, #222);
+  box-shadow: inset 1px 1px 2px rgba(255,255,255,0.3), 0 2px 4px rgba(0,0,0,0.8);
+  z-index: 10;
+}
+
+.fence-rivet--tl { top: 14px; left: 14px; }
+.fence-rivet--tr { top: 14px; right: 14px; }
+.fence-rivet--bl { bottom: 14px; left: 14px; }
+.fence-rivet--br { bottom: 14px; right: 14px; }
+
+/* ---- Center lock bar ---- */
+.fence-lock-bar {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #333, #888, #444);
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s ease 0.6s, opacity 0.4s ease 0.6s;
+  border-left: 2px solid rgba(255,255,255,0.1);
+  border-right: 2px solid rgba(255,255,255,0.1);
+}
+
+.fence-lock-bar--open {
+  transform: translateX(-50%) scaleY(0);
+  opacity: 0;
+}
+
+.fence-chain {
+  font-size: 1.6rem;
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+/* ---- Enter hint text ---- */
+.fence-enter-hint {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  transition: opacity 0.4s ease;
+}
+
+.fence-enter-hint--hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fence-enter-hint span:first-child {
+  color: #fff;
+  font-size: 1.4rem;
+  letter-spacing: 6px;
+  text-shadow: 0 0 20px rgba(182, 255, 59, 0.5);
+}
+
+.fence-enter-hint span:last-child {
+  color: rgba(182, 255, 59, 0.7);
+  font-size: 1rem;
+  animation: blinkText 1.2s ease-in-out infinite;
+}
+
+@keyframes blinkText {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}

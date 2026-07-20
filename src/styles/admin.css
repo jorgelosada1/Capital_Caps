@@ -1,13 +1,15 @@
-/* ============================
-   ADMIN PANEL — Capital Caps
-   ============================ */
+/* ============================================
+   CAPITAL CAPS — Admin Panel Style
+   Industrial Warehouse & Clandestino Gallery
+   ============================================ */
 
 .admin-page {
-  padding-top: 100px;
+  padding-top: 110px;
   min-height: 100vh;
   padding-inline: clamp(1rem, 5vw, 4rem);
-  padding-bottom: 4rem;
-  background: var(--bg-primary);
+  padding-bottom: 5rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .admin-header-row {
@@ -15,109 +17,345 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  border-bottom: 3px solid #1A1A1A;
+  padding-bottom: 1.2rem;
 }
 
 .admin-title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
   letter-spacing: 4px;
-  color: var(--text-primary);
   text-transform: uppercase;
+  color: var(--worn-white);
+  text-shadow: 4px 4px 0 #000000;
+  margin: 0;
 }
 
 .admin-logout {
-  background: transparent;
-  border: 2px solid var(--text-secondary);
-  color: var(--text-secondary);
+  background: var(--rust-red);
+  border: 3px solid #000000;
+  color: #FFFFFF;
   font-family: var(--font-display);
-  font-size: 0.9rem;
-  letter-spacing: 2px;
-  padding: 8px 20px;
+  font-size: 1.1rem;
+  padding: 10px 24px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  box-shadow: 4px 4px 0 #000000;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  letter-spacing: 2px;
   text-transform: uppercase;
+  transform: rotate(1deg);
 }
 
 .admin-logout:hover {
-  border-color: var(--accent-alt);
-  color: var(--accent-alt);
+  background: #FFFFFF;
+  color: #000000;
+  transform: rotate(-1deg) scale(1.05);
+  box-shadow: 5px 5px 0 var(--neon-green), 5px 5px 0 2px #000000;
 }
 
-/* Summary Cards */
+/* ---- Resumen de Stats ---- */
 .admin-summary {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-  margin-bottom: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin-bottom: 4rem;
 }
 
 .summary-card {
-  background: var(--bg-secondary);
-  border: 2px solid var(--border);
-  padding: 1.5rem;
+  background-color: #F4F0E5; /* Worn wheatpaste paper */
+  color: #000000;
+  border: 3px solid #000000;
+  padding: 2rem 1.5rem;
   text-align: center;
-  transition: border-color 0.3s ease;
+  box-shadow: 6px 6px 0px #000000;
+  transition: all 0.25s ease;
+  position: relative;
 }
 
+.summary-card:nth-child(odd) { transform: rotate(-1.2deg); }
+.summary-card:nth-child(even) { transform: rotate(1deg); }
+
 .summary-card:hover {
-  border-color: var(--accent);
+  transform: rotate(0deg) scale(1.04) translateY(-4px);
+  box-shadow: 10px 10px 0px var(--neon-green), 10px 10px 0px 3px #000000;
 }
 
 .summary-card-value {
-  font-family: var(--font-display);
-  font-size: 3rem;
-  color: var(--accent);
+  font-family: var(--font-heavy);
+  font-size: 3.5rem;
   line-height: 1;
+  margin-bottom: 6px;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
 }
 
 .summary-card-value--available {
-  color: var(--accent);
+  color: var(--purple);
 }
 
 .summary-card-value--sold {
-  color: var(--accent-alt);
+  color: var(--rust-red);
 }
 
 .summary-card-label {
   font-family: var(--font-display);
-  font-size: 1rem;
-  color: var(--text-secondary);
+  font-size: 1.1rem;
+  color: #111111;
   letter-spacing: 2px;
+  margin: 0;
+  text-transform: uppercase;
+  border-top: 2px solid #000000;
+  padding-top: 6px;
+  display: inline-block;
+}
+
+/* ---- Botón "Nuevo Drop" ---- */
+.admin-new-btn {
+  display: block;
+  width: 100%;
+  background: var(--neon-green);
+  border: 3px solid #000000;
+  color: #000000;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  padding: 18px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 3rem;
+  box-shadow: 7px 7px 0px #000000;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.admin-new-btn:hover {
+  background-color: #FFFFFF;
+  color: #000000;
+  box-shadow: 10px 10px 0px var(--rust-red), 10px 10px 0px 3px #000000;
+  transform: scale(1.02) rotate(-0.5deg);
+}
+
+.admin-new-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 3px 3px 0 #000;
+}
+
+/* ---- Formulario Agregar Drop ---- */
+.admin-form-section {
+  background-color: #141414;
+  border: 4px solid #000000;
+  padding: 3rem 2.5rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+  box-shadow: 10px 10px 0px #000000;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255,255,255,0.005) 0px,
+    rgba(255,255,255,0.005) 1px,
+    transparent 1px,
+    transparent 20px
+  );
+}
+
+/* Caution tape at form top */
+.admin-form-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--neon-green),
+    var(--neon-green) 12px,
+    #000000 12px,
+    #000000 24px
+  );
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-form-label {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--neon-green);
+}
+
+.admin-form-input {
+  background-color: #0A0A0A;
+  border: 2.5px solid #333333;
+  color: var(--worn-white);
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: all 0.25s ease;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.admin-form-input:focus {
+  border-color: var(--neon-green);
+  outline: none;
+  box-shadow: 0 0 10px rgba(182,255,59,0.2);
+}
+
+textarea.admin-form-input {
+  min-height: 120px;
+  resize: vertical;
+}
+
+select.admin-form-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23B6FF3B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 18px;
+}
+
+/* Selector de Tallas Form */
+.admin-sizes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.admin-size-btn {
+  padding: 10px 18px;
+  background: #222222;
+  border: 2.5px solid #444444;
+  color: #BBBBBB;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.admin-size-btn:hover {
+  border-color: var(--neon-green);
+  color: var(--neon-green);
+  transform: translateY(-2px);
+}
+
+.admin-size-btn--active {
+  background-color: var(--neon-green) !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+  font-weight: bold;
+  box-shadow: 3px 3px 0 #000 !important;
+}
+
+/* Form Img previews */
+.admin-image-previews {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
   margin-top: 8px;
 }
 
-/* Product Table */
+.admin-image-preview {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.admin-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-image-preview-delete {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--rust-red);
+  color: white;
+  border: 2.5px solid #000;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0 #000;
+  transition: transform 0.2s ease;
+}
+
+.admin-image-preview-delete:hover {
+  transform: scale(1.15) rotate(10deg);
+}
+
+.admin-form-submit {
+  width: 100%;
+  background-color: var(--neon-green);
+  color: #000000;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: 3px;
+  padding: 16px;
+  border: 3.5px solid #000000;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-top: 1.5rem;
+  box-shadow: 6px 6px 0px #000000;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.admin-form-submit:hover {
+  background-color: #FFFFFF;
+  color: #000000;
+  box-shadow: 8px 8px 0px var(--rust-red), 8px 8px 0px 3px #000000;
+  transform: scale(1.02);
+}
+
+/* ---- Tabla de Drops ---- */
 .admin-table-wrapper {
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  margin-bottom: 3rem;
+  border: 3px solid #000000;
+  box-shadow: 8px 8px 0 #000000;
 }
 
 .admin-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 700px;
+  min-width: 900px;
+  background: #111111;
 }
 
 .admin-table th {
   font-family: var(--font-display);
-  font-size: 0.9rem;
+  font-size: 1rem;
   letter-spacing: 2px;
-  color: var(--text-secondary);
+  color: var(--neon-green);
   text-align: left;
-  padding: 12px;
-  border-bottom: 2px solid var(--border);
+  padding: 16px;
+  border-bottom: 3.5px solid #000000;
+  background: #000000;
   text-transform: uppercase;
-  white-space: nowrap;
 }
 
 .admin-table td {
-  padding: 12px;
-  border-bottom: 1px solid var(--border);
+  padding: 16px;
+  border-bottom: 2px solid #222222;
   vertical-align: middle;
-  font-family: var(--font-body);
-  font-size: 0.9rem;
 }
 
 .admin-table tbody tr {
@@ -125,183 +363,190 @@
 }
 
 .admin-table tbody tr:hover {
-  background: var(--bg-secondary);
+  background-color: #181818;
 }
 
 .admin-table-img {
-  width: 60px;
-  height: 60px;
+  width: 68px;
+  height: 68px;
   object-fit: cover;
-  border: 1px solid var(--border);
+  border: 2.5px solid #000000;
+  box-shadow: 3px 3px 0 #000;
 }
 
 .admin-product-name {
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   letter-spacing: 1px;
   text-transform: uppercase;
+  color: var(--worn-white);
 }
 
 .admin-price-tag {
-  font-family: var(--font-display);
-  color: var(--accent);
-  font-size: 1.1rem;
+  font-family: var(--font-marker);
+  color: var(--neon-green);
+  font-size: 1.15rem;
   white-space: nowrap;
 }
 
-.admin-folder {
-  font-family: var(--font-body);
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-}
-
-/* Stock Control */
 .admin-stock-control {
   display: flex;
   align-items: center;
-  gap: 0;
 }
 
 .admin-stock-btn {
-  width: 32px;
-  height: 32px;
-  background: var(--bg-secondary);
-  border: 2px solid var(--border);
-  color: var(--text-primary);
+  width: 34px;
+  height: 34px;
+  background-color: #222222;
+  border: 2.5px solid #000000;
+  color: var(--worn-white);
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   cursor: pointer;
-  transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
-}
-
-.admin-stock-btn:first-child {
-  border-right: none;
-}
-
-.admin-stock-btn:last-child {
-  border-left: none;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0 #000;
 }
 
 .admin-stock-btn:hover:not(:disabled) {
-  background: var(--accent);
-  color: var(--bg-primary);
-  border-color: var(--accent);
+  background-color: var(--neon-green);
+  color: #000000;
 }
 
 .admin-stock-btn:disabled {
-  opacity: 0.3;
+  opacity: 0.25;
   cursor: not-allowed;
 }
 
 .admin-stock-input {
-  width: 48px;
-  height: 32px;
-  background: var(--bg-primary);
-  border: 2px solid var(--border);
-  color: var(--accent);
+  width: 52px;
+  height: 34px;
+  background-color: #0A0A0A;
+  border: 2.5px solid #000000;
+  border-inline: none;
+  color: var(--neon-green);
   font-family: var(--font-display);
-  font-size: 1.1rem;
   text-align: center;
-  -moz-appearance: textfield;
-}
-
-.admin-stock-input::-webkit-outer-spin-button,
-.admin-stock-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+  font-size: 1.15rem;
 }
 
 .admin-status {
   font-family: var(--font-display);
-  font-size: 0.9rem;
+  font-size: 1rem;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 .admin-status--available {
-  color: var(--accent);
+  color: var(--neon-green);
 }
 
 .admin-status--sold {
-  color: var(--accent-alt);
+  color: var(--rust-red);
 }
 
-/* Action Buttons */
+/* Acciones de tabla */
 .admin-actions {
   white-space: nowrap;
+  display: flex;
+  gap: 10px;
 }
 
 .admin-btn {
-  padding: 6px 14px;
+  padding: 8px 18px;
   font-family: var(--font-display);
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  border: 2px solid;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-right: 6px;
-  margin-bottom: 4px;
-  background: transparent;
+  font-size: 0.9rem;
+  letter-spacing: 1.5px;
+  border: 2.5px solid #000000;
   text-transform: uppercase;
   display: inline-block;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #000;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .admin-btn--sell {
-  border-color: var(--accent-alt);
-  color: var(--accent-alt);
+  background-color: var(--rust-red);
+  color: #ffffff;
 }
 
 .admin-btn--sell:hover {
-  background: var(--accent-alt);
-  color: var(--text-primary);
+  background-color: #ffffff;
+  color: #000000;
+  transform: rotate(-1.5deg) scale(1.05);
 }
 
 .admin-btn--available {
-  border-color: var(--accent);
-  color: var(--accent);
+  background-color: var(--neon-green);
+  color: #000000;
 }
 
 .admin-btn--available:hover {
-  background: var(--accent);
-  color: var(--bg-primary);
+  background-color: #ffffff;
+  color: #000000;
+  transform: rotate(1.5deg) scale(1.05);
 }
 
 .admin-btn--delete {
-  border-color: #666;
-  color: #666;
+  background-color: #333333;
+  color: #ffffff;
 }
 
 .admin-btn--delete:hover {
-  background: #666;
-  color: var(--text-primary);
+  background-color: var(--rust-red);
+  color: #ffffff;
+  transform: rotate(-1deg) scale(1.05);
+}
+
+.admin-sizes-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.admin-size-badge {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  padding: 3px 10px;
+  border: 2px solid #000000;
+  background: #1E1E1E;
+  color: #FFFFFF;
+  letter-spacing: 1px;
+  box-shadow: 2px 2px 0 #000;
 }
 
 .admin-empty {
   text-align: center;
-  padding: 4rem 1rem;
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  letter-spacing: 2px;
-  color: var(--text-secondary);
+  padding: 5rem 1rem;
+  font-family: var(--font-marker);
+  font-size: 1.5rem;
+  color: var(--neon-green);
+  background: #111111;
+  border: 3px solid #000;
 }
 
-/* Responsive */
+/* ---- Responsive ---- */
 @media (max-width: 768px) {
   .admin-page {
-    padding-top: 90px;
+    padding-top: 100px;
+    padding-inline: 4%;
   }
 
   .admin-header-row {
     flex-direction: column;
     align-items: flex-start;
+    gap: 12px;
+  }
+
+  .admin-form-grid {
+    grid-template-columns: 1fr;
   }
 
   .admin-btn {
-    font-size: 0.75rem;
-    padding: 5px 10px;
+    font-size: 0.8rem;
+    padding: 6px 12px;
   }
 }

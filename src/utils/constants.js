@@ -20,7 +20,18 @@ export const PRODUCT_STATUS = {
   SOLD: 'vendida',
 };
 
-export const WHATSAPP_NUMBER = '573208620312'; // Colombia country code + number
+export const WHATSAPP_NUMBER = '573208620312';
+
+/** Fitted cap sizes from 7 to 7 3/4 */
+export const CAP_SIZES = [
+  '7',
+  '7 1/8',
+  '7 1/4',
+  '7 3/8',
+  '7 1/2',
+  '7 5/8',
+  '7 3/4',
+];
 
 export const formatPrice = (price) => {
   return new Intl.NumberFormat(CURRENCY_LOCALE, {
@@ -34,10 +45,15 @@ export const formatPrice = (price) => {
 /**
  * Generates a WhatsApp link to order a specific cap.
  * @param {object} product - The product object
+ * @param {string} [selectedSize] - The selected cap size
  * @returns {string} WhatsApp URL
  */
-export const getWhatsAppLink = (product) => {
-  const message = `¡Hola! 🧢 Me interesa comprar:\n\n*${product.name}*\nPrecio: ${formatPrice(product.price)}\n\n¿Está disponible?`;
+export const getWhatsAppLink = (product, selectedSize) => {
+  let message = `¡Hola! 🧢 Me interesa comprar:\n\n*${product.name}*\nPrecio: ${formatPrice(product.price)}`;
+  if (selectedSize) {
+    message += `\nTalla: ${selectedSize}`;
+  }
+  message += `\n\n¿Está disponible?`;
   const encoded = encodeURIComponent(message);
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
 };

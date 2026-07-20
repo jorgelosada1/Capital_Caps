@@ -1,286 +1,405 @@
 /* ============================================
-   CAPITAL CAPS — Additional Home Sections
-   Street/Urban Aesthetic
+   CAPITAL CAPS — Home Sections
+   Estilo Galería Callejera Industrial
    ============================================ */
 
-/* ---- Featured Drops Section ---- */
+/* ---- Section Wrapper estilo muro dividido ---- */
+.home-section-sep {
+  width: 100%;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--neon-green) 0px, var(--neon-green) 6px,
+    #000 6px, #000 18px
+  );
+  opacity: 0.5;
+}
+
+/* ---- Section Headers ---- */
+.shop-title-wrapper {
+  text-align: center;
+  margin-bottom: 2.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.shop-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--worn-white);
+  text-shadow:
+    5px 5px 0px #000,
+    -1px -1px 0 #000;
+  display: inline-block;
+  line-height: 1;
+  position: relative;
+}
+
+/* Underline de pincel */
+.shop-title::after {
+  content: '';
+  display: block;
+  height: 5px;
+  margin-top: 6px;
+  background: var(--neon-green);
+  box-shadow: 3px 3px 0 #000;
+  transform: rotate(-0.5deg);
+}
+
+/* ---- Featured Section ---- */
 .home-featured {
+  padding: 5rem clamp(1rem, 5vw, 4rem) 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ---- Showcase Section (Cartel + Imagen) ---- */
+.home-showcase {
   padding: 4rem clamp(1rem, 5vw, 4rem);
   max-width: 1400px;
   margin: 0 auto;
 }
 
-/* ---- Collage Showcase Section ---- */
-.home-showcase {
-  background: #000000;
-  border-top: 3px solid var(--border);
-  border-bottom: 3px solid var(--border);
-  padding: 6rem clamp(1rem, 5vw, 4rem);
-  position: relative;
-}
-
-.home-showcase::before {
-  content: 'STREETWEAR';
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-family: var(--font-display);
-  font-size: 8rem;
-  color: rgba(255, 255, 255, 0.015);
-  line-height: 1;
-  pointer-events: none;
-  font-weight: 900;
-}
-
 .showcase-container {
-  max-width: 1200px;
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 4rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
   align-items: center;
+  background: #111111;
+  border: 4px solid #000;
+  padding: 3.5rem;
+  box-shadow: 10px 10px 0px #000, inset 0 0 80px rgba(0,0,0,0.4);
+  position: relative;
+  /* textura diagonal sutil */
+  background-image:
+    repeating-linear-gradient(
+      -50deg,
+      rgba(255,255,255,0.01) 0px,
+      rgba(255,255,255,0.01) 1px,
+      transparent 1px,
+      transparent 24px
+    );
+  background-color: #111111;
+}
+
+/* Esquina de caution tape */
+.showcase-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 8px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--neon-green) 0px, var(--neon-green) 10px,
+    #000 10px, #000 20px
+  );
 }
 
 .showcase-info {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 1.5rem;
-}
-
-.showcase-tag {
-  background: var(--accent);
-  color: var(--bg-primary);
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  padding: 4px 12px;
-  letter-spacing: 2px;
-  font-weight: bold;
-  text-transform: uppercase;
+  align-items: flex-start;
 }
 
 .showcase-title {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  line-height: 1.1;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
   letter-spacing: 2px;
-  color: var(--text-primary);
   text-transform: uppercase;
+  color: var(--worn-white);
+  line-height: 1;
+  text-shadow: 4px 4px 0 #000;
 }
 
 .showcase-title span {
-  color: var(--accent);
-  text-shadow: 2px 2px 0 var(--border);
+  color: #000;
+  background: var(--neon-green);
+  padding: 2px 14px;
+  display: inline-block;
+  border: 2.5px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  transform: rotate(-1.5deg);
 }
 
 .showcase-desc {
   font-family: var(--font-body);
-  color: var(--text-secondary);
   font-size: 1.05rem;
-  line-height: 1.7;
+  color: #AAAAAA;
+  line-height: 1.8;
+  border-left: 3px solid var(--neon-green);
+  padding-left: 14px;
 }
 
 .showcase-button {
-  display: inline-block;
-  background-color: transparent;
-  color: var(--accent);
-  border: 2px solid var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--neon-green);
+  color: #000;
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  padding: 12px 30px;
-  letter-spacing: 2px;
-  transition: all 0.3s;
+  font-size: 1.25rem;
+  padding: 14px 36px;
+  border: 3.5px solid #000;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  text-decoration: none;
   cursor: pointer;
+  text-decoration: none;
+  box-shadow: 7px 7px 0 #000;
+  transform: rotate(-1deg);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .showcase-button:hover {
-  background-color: var(--accent);
-  color: var(--bg-primary);
-  box-shadow: 4px 4px 0 var(--text-primary);
-  transform: translate(-2px, -2px);
+  background: var(--worn-white);
+  transform: rotate(1.5deg) scale(1.06);
+  box-shadow: 9px 9px 0 var(--rust-red), 9px 9px 0 3px #000;
 }
 
-/* Image container with hard streetwear frame styling */
 .showcase-image-wrapper {
   position: relative;
-  border: 3px solid var(--text-primary);
-  box-shadow: 10px 10px 0 var(--accent);
-  transition: transform 0.3s, box-shadow 0.3s;
+  border: 4px solid #000;
+  box-shadow: 10px 10px 0 #000;
+  transform: rotate(2.5deg);
+  transition: transform 0.4s ease;
 }
 
 .showcase-image-wrapper:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 13px 13px 0 var(--accent-alt);
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 14px 14px 0 var(--rust-red), 14px 14px 0 3px #000;
 }
 
 .showcase-img {
   width: 100%;
-  aspect-ratio: 16/14;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   display: block;
+  filter: contrast(1.08) brightness(0.95);
 }
 
 .showcase-label {
   position: absolute;
-  bottom: 12px;
-  left: 12px;
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  letter-spacing: 1px;
-  padding: 6px 14px;
-  border: 1px solid var(--border);
-  text-transform: uppercase;
+  bottom: 14px;
+  right: 14px;
+  background: #000;
+  color: var(--neon-green);
+  font-family: var(--font-marker);
+  font-size: 0.9rem;
+  padding: 4px 14px;
+  border: 2px solid var(--neon-green);
+  box-shadow: 3px 3px 0 var(--rust-red);
+  transform: rotate(-3deg);
 }
 
-/* ---- Philosophy / Manifesto section ---- */
+/* ---- Manifesto (Carteles de calle) ---- */
 .home-manifesto {
-  padding: 6rem clamp(1rem, 5vw, 4rem);
+  padding: 4rem clamp(1rem, 5vw, 4rem) 5rem;
   max-width: 1400px;
   margin: 0 auto;
 }
 
 .manifesto-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 3rem;
 }
 
 .manifesto-card {
-  background: var(--bg-secondary);
-  border: 2px solid var(--border);
-  padding: 2.5rem 2rem;
+  background: #F4F0E5;
+  color: #000;
+  border: 3.5px solid #000;
+  padding: 2.4rem;
   position: relative;
-  transition: all 0.3s ease;
+  box-shadow: 8px 8px 0px #000;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
+/* Ruido sutil en los carteles */
+.manifesto-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.manifesto-card:nth-child(1) { transform: rotate(-2.5deg); }
+.manifesto-card:nth-child(2) { transform: rotate(1.8deg); }
+.manifesto-card:nth-child(3) { transform: rotate(-1.2deg); }
+
 .manifesto-card:hover {
-  border-color: var(--accent);
-  box-shadow: 6px 6px 0 var(--accent);
-  transform: translate(-3px, -3px);
+  transform: rotate(0deg) scale(1.04) translateY(-5px) !important;
+  box-shadow: 12px 12px 0px var(--neon-green), 12px 12px 0px 3px #000;
+  z-index: 5;
 }
 
 .manifesto-num {
-  font-family: var(--font-display);
-  font-size: 2.5rem;
-  color: rgba(228, 255, 26, 0.15);
-  position: absolute;
-  top: 15px;
-  right: 20px;
+  font-family: var(--font-marker);
+  font-size: 3rem;
+  color: var(--rust-red);
   line-height: 1;
+  display: block;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 0 rgba(200,62,43,0.3);
 }
 
 .manifesto-h3 {
   font-family: var(--font-display);
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
+  color: #000;
+  margin-bottom: 0.8rem;
+  border-bottom: 4px solid #000;
+  padding-bottom: 6px;
 }
 
 .manifesto-p {
   font-family: var(--font-body);
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.97rem;
+  color: #222;
+  line-height: 1.7;
 }
 
-/* ---- Social Banner / Call to Action ---- */
+/* ---- Sección Social / Comunidad ---- */
 .home-social-banner {
-  background: linear-gradient(135deg, #111 0%, #000 100%);
-  border-top: 3px solid var(--border);
-  padding: 5rem 1rem;
-  text-align: center;
-  position: relative;
+  padding: 4rem clamp(1rem, 5vw, 4rem) 5rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .social-banner-container {
-  max-width: 800px;
-  margin: 0 auto;
+  background: #0D0D0D;
+  border: 4px solid #000;
+  box-shadow: 12px 12px 0px #000;
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.4rem;
+  overflow: hidden;
+  background-image:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(182,255,59,0.015) 0px,
+      rgba(182,255,59,0.015) 1px,
+      transparent 1px,
+      transparent 30px
+    );
+}
+
+/* Caution tape superior */
+.social-banner-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 9px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--rust-red) 0px, var(--rust-red) 10px,
+    #000 10px, #000 20px
+  );
 }
 
 .social-banner-title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 6vw, 4rem);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   letter-spacing: 3px;
-  line-height: 1.1;
   text-transform: uppercase;
+  color: var(--worn-white);
+  text-shadow: 4px 4px 0 #000;
 }
 
 .social-banner-title span {
-  color: var(--accent);
+  color: #000;
+  background: var(--neon-green);
+  padding: 2px 14px;
+  border: 2.5px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  transform: rotate(-1deg);
+  display: inline-block;
 }
 
 .social-banner-subtitle {
   font-family: var(--font-body);
   font-size: 1.1rem;
-  color: var(--text-secondary);
-  max-width: 600px;
+  color: #999;
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+.social-banner-subtitle strong {
+  color: var(--neon-green);
+  font-weight: 700;
 }
 
 .social-banner-links {
   display: flex;
   gap: 1.5rem;
+  margin-top: 0.8rem;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 1rem;
 }
 
 .social-banner-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--text-primary);
-  color: var(--bg-primary);
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  padding: 12px 28px;
+  font-size: 1.3rem;
+  padding: 14px 38px;
+  border: 3.5px solid #000;
   letter-spacing: 2px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s;
   text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 6px 6px 0 #000;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .social-banner-btn--instagram {
-  background: #E4FF1A;
-  color: #000;
+  background: #E1306C;
+  color: #fff;
+  transform: rotate(-2deg);
 }
 
 .social-banner-btn--instagram:hover {
-  background: #fff;
-  box-shadow: 4px 4px 0 #E4FF1A;
-  transform: translate(-2px, -2px);
+  background: #C13584;
+  transform: rotate(0deg) scale(1.07);
+  box-shadow: 8px 8px 0 var(--neon-green), 8px 8px 0 3px #000;
 }
 
 .social-banner-btn--tiktok {
-  background: #fff;
+  background: #00f2fe;
   color: #000;
+  transform: rotate(2deg);
 }
 
 .social-banner-btn--tiktok:hover {
-  background: #E4FF1A;
-  box-shadow: 4px 4px 0 #fff;
-  transform: translate(-2px, -2px);
+  background: #fff;
+  transform: rotate(0deg) scale(1.07);
+  box-shadow: 8px 8px 0 var(--rust-red), 8px 8px 0 3px #000;
 }
 
 /* ---- Responsive ---- */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .showcase-container {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    padding: 2.5rem 1.5rem;
   }
-  .manifesto-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
+
+  .showcase-image-wrapper { transform: rotate(0deg); }
+
+  .social-banner-container { padding: 3rem 1.5rem; }
+
+  .manifesto-grid { gap: 2rem; }
+  .manifesto-card:nth-child(1),
+  .manifesto-card:nth-child(2),
+  .manifesto-card:nth-child(3) { transform: rotate(0); }
 }
